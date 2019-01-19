@@ -154,7 +154,7 @@ case class RESTRelation(
     val inputDataKeys = restOptions.inputKeys
     val keyArr = if (inputDataKeys == "") columnNames else inputDataKeys.split(",")
 
-print("Test:" + RestConnectorUtil.prepareJsonOutput(keyArr, valArray, outputStr))
+// print("Test:" + RestConnectorUtil.prepareJsonOutput(keyArr, valArray, outputStr))
 
     if(includeInputFlg == "N") outputStr else {
 

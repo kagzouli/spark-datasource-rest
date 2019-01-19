@@ -151,18 +151,7 @@ object RestConnectorUtil {
   }
 
   def prepareJsonOutput(keys: Array[String], values: Array[String], resp: String) : String = {
-
-    val keysLength = keys.length
-    var cnt = 0
-    val outArrB : ArrayBuffer[String] = new ArrayBuffer[String](keysLength)
-
-    while (cnt < keysLength) {
-        outArrB += values(cnt)
-        cnt += 1
-    }
-
     resp
-
   }
 
 }
