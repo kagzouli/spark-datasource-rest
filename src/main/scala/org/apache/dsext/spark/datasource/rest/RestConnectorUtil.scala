@@ -41,6 +41,7 @@ object RestConnectorUtil {
                      userCredStr: String,
                      connStr: String,
                      contentType: String,
+                     securityToken: String,
                      respType: String): Any = {
 
 
@@ -48,13 +49,16 @@ object RestConnectorUtil {
     //  contentType + ", userId : " + userId + ", userPassword : " + userPassword +
     // " , data : " + data + "\n")
 
-
     var httpc = (method: @switch) match {
       case "GET" => Http(addQryParmToUri(uri, data)).header("contenty-type",
                      "application/x-www-form-urlencoded")
       case "PUT" => Http(uri).put(data).header("content-type", contentType)
       case "DELETE" => Http(uri).method("DELETE")
       case "POST" => Http(uri).postData(data).header("content-type", contentType)
+    }
+
+    if (!isBlank(securityToken)) {
+      httpc = httpc.header("securityToken", securityToken)
     }
 
     val conns = connStr.split(":")
@@ -152,6 +156,10 @@ object RestConnectorUtil {
 
   def prepareJsonOutput(keys: Array[String], values: Array[String], resp: String) : String = {
     resp
+  }
+
+  def isBlank(input: String): Boolean = {
+   (input == null || input.trim.isEmpty)
   }
 
 }
